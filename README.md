@@ -17,4 +17,4 @@ This project allows users to use RFID tag "beacons" to designate physical locati
 - Python (Rapid Protyping)
 - Tkinter (GUI Prototyping)
 - Android Studio / Java (Android App)
-
+- RFID / NFC Technology
