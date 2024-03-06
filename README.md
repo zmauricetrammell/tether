@@ -11,3 +11,10 @@ This project is an attempt at outsourcing the executive function to an assistive
 **Concept:**
 
 This project allows users to use RFID tag "beacons" to designate physical locations that correspond to tasks. Then the user will record sequences of tasks and specific actions to create routines. The user interface will guide the user through the desired routine by prompting the user to scan each of the beacons corresponding to the recorded actions, preventing distraction or confusion and enforcing completion.
+
+**Areas of Focus:**
+
+- Python (Rapid Protyping)
+- Tkinter (GUI Prototyping)
+- Android Studio / Java (Android App)
+
