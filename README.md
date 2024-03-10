@@ -14,32 +14,46 @@ This project allows users to use RFID tag "beacons" to designate physical locati
 
 **General Functionality:**
 
-<ins>Make a Beacon</ins>
-Users are prompted to create a beacon by inputting its attributes and scanning the RFID tag to save the code.
+<ins>Components</ins>
 
-Example:
-Create a Beacon, Kitchen Sink, associated with an RFID tag stuck near your kitchen sink.
+Components are a shell parent class that have metadata fields.
 
-<ins>Make an Action</ins>
-Users are prompted to create a saved action by inputting its attributes and selecting a location beacon from the saved list or creating a new one from scratch.
+- Component Name
+- Component Description
 
-Example: 
-Create an Action, Wash Dishes, associated with the kitchen sink beacon.
+<ins>Waypoints</ins>
 
-<ins>Make a Task</ins>
-Users are prompted to create a saved task by inputting its attributes then selecting and ordering actions that fit within or creating actions from scratch.
-- Tasks have shirt sizes: small, medium, and large corresponding to how many times the user needs to scan the tag over a period of time (combat distractions)
-  
-Example:
-Create a Task, Do Dishes, comprised of: Go to Kitchen Sink, Wash Dishes (Start), Wash Dishes (Poke), Wash Dishes (Finish)
+Waypoints are Components that have a location attribute and a code attribute. They correspond to an RFID tag and get the code from it to later check as the user scans waypoints to progress steps. Waypoints tell users where to go and allow the program to check that the user went there. Waypoints have a one to many relationship with Steps.
 
+- Waypoint Name
+- Waypoint Description
+- Waypoint Location
+- Waypoint Code
 
-<ins>Make a Routine</ins>
-Users are prompted to add and sequence tasks from application memory or create a new task from scratch.
-- Tasks should be shown in a list to be added
+<ins>Steps</ins>
 
-Example:
-Create a Routine by joining Do Dishes, Clean Counters, and Mop Floor.
+Steps are Components that have a Waypoint attribute. They correspond to a specific action that a user will take to progress their activity. Steps have a Waypoint associated to a guide the user to a location and check that they went. Steps have a many to one relationship with Tasks.
+
+- Step Name
+- Step Description
+- Waypoint
+
+<ins>Tasks</ins>
+
+Tasks are Components that hold a group of Steps. Tasks have a priority attribute that allows the user to designate its relative importance compared to other tasks. Tasks correspond to a singe full activity: arrival at, execution of, and completion. Tasks have Steps associated with them to break them to chunks. Tasks, once started, require the user to check in by rescanning the Waypoint to show that they're still there. Tasks are completed by holding the scanner to the Waypoint for 5 seconds. Tasks share a many to many relationship with Routines. 
+
+- Task Name
+- Task Description
+- Task Priority
+- Steps List
+
+<ins>Routines</ins>
+
+Routines are Components that hold groups of Tasks. Routines correspond to an ordered set of tasks. Routines, once started, will prompt the user to complete Tasks, Step by Step. 
+
+- Routine Name
+- Routine Description
+- Task List
 
 
 **Areas of Focus:**
