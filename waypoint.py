@@ -11,21 +11,6 @@ Waypoints are used to track where the larger action object will require
 the user to be. Waypoints have RFID tags that will be scanned to initiate 
 and conclude actions.
 """
-def createWaypoint(): # createWaypoint is a wrapper method that prompts the user for terminal inputs and returns a Waypoint object
-    print("New Waypoint Name")
-    newWaypointName = input()
-    print("New Waypoint Description")
-    newWaypointDescription = input()
-    print("New Waypoint Location")
-    newWaypointLocation = input()
-    newWaypoint = Waypoint(newWaypointName,newWaypointDescription,newWaypointLocation) # Create new Waypoint object from inputs
-    # TODO Incorporate persistence for objects. Pickles.
-    Waypoints[newWaypointName] = newWaypoint
-    print("Waypoints: {}".format(Waypoints))
-    return newWaypoint
-    
-def getWaypoints(): # getWaypoints returns a list of all the Waypoints saved
-    pass
 
 class Waypoint(Component): 
     def __init__(self, name, description, location, code = '00000'):
@@ -39,10 +24,9 @@ class Waypoint(Component):
     def scan(self): # waits for RFID to be scanned
         match = False
 
-        while not match:
+        while not match: # TODO Move this to main.py
             print("Scanning...") 
-            input_string = input() # TODO build in RFID scanner
-            print("Code received: {}".format(input_string))
+            input_string = input("Waypoint Code: ") # TODO build in RFID scanner
 
             if(input_string == self.code): # compare code received to code cached for Waypoint
                 match = True

@@ -22,9 +22,6 @@ relationship with Routines.
 - Steps List
 """
 
-def createTask(): # createTask is a wrapper method that prompts the user for  terminal inputs and returns a task object
-    pass
-
 class Task(Component):
     def __init__(self, name, description, steps: list):
         super().__init__(name, description)
