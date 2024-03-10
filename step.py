@@ -18,16 +18,6 @@ Steps are Components that have a Waypoint attribute. They correspond to a specif
 - Waypoint
 
 """
-# TODO add waypoint creation or selection
-def createStep(waypoint): # createStep is a wrapper method that prompts the user for terminal inputs and returns a Step object
-    print("New Step Name")
-    newStepName = input()
-    print("New Step Description")
-    newStepDescription = input()
-    # Make Waypoint
-    newStep = Step(newStepName,newStepDescription,waypoint) # Create new action object from inputs 
-    
-    return newStep
 
 class Step(Component):
     def __init__(self, name, description,waypoint: Waypoint):
