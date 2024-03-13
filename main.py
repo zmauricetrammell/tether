@@ -3,8 +3,8 @@ from step import Step
 from task import Task
 from routine import Routine
 
-import concurrent.futures
-import time
+import threading
+import time 
 
 """
 The main program for the CLI prototype
@@ -54,6 +54,8 @@ Tasks = {
     "Shower": Task("Shower", "Take a shower then clean shower", [Steps["Go Bathroom"],Steps["Shower"],Steps["Clean Shower"]]),
     "Sleep": Task("Sleep", "Read and go to bed",[Steps["Go Bedroom"],Steps["Read"],Steps["Sleep"]])
 }
+
+User_Status = "GO" # GO -> STOP
 
 def createWaypoint() -> Waypoint: # A function to get user input and make a Waypoint object
     # Make a Waypoint, create a Step, add to steps list
@@ -109,15 +111,23 @@ def createRoutine() -> Routine: # A function to get user inputs and make a Routi
     routine = Routine(routine_name,routine_description,tasks)
 
     return routine
-   
+    
+# Reminder function
+def reminder(interval: int):
+    while User_Status == "GO":
+        count = 0
+        while count < interval:
+            if User_Status == "STOP":
+                return
+            time.sleep(1)
+            count +=1
+        print("Reminder")
+        print(threading.active_count())
 
 def main():
 
     #routine = createRoutine()
     routine = Routine("Sleep Routine","Routine before going to sleep",[Tasks["Brush and Floss"],Tasks["Shower"],Tasks["Sleep"]])
-
-    # Create a thread to check for Waypoints
-    pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
     # Follow Routine
     print("FOLLOW")
@@ -127,9 +137,13 @@ def main():
         print("Task: {}".format(task.name))
         for step in task.steps:
             print(step.name)
-            # New thread to notify every 30 seconds
-            # pool.submit(timer)
+            timer_thread = threading.Thread(target = reminder, args = (30,)) # timer thread with 30 second interval
+            global User_Status
+            User_Status = "GO"
+            timer_thread.start() # Start thread timer
             step.waypoint.scan() # Program cannot continue until scan comes back
+            User_Status = "STOP"
+            timer_thread.join() # Join thread to wait for it to check for the stop status
             
             
 if __name__ == "__main__":
