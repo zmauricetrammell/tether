@@ -1,3 +1,4 @@
+from component import Component
 from waypoint import Waypoint
 from step import Step
 from task import Task
@@ -5,6 +6,9 @@ from routine import Routine
 
 import threading
 import time 
+
+import pickle
+import os
 
 """
 The main program for the CLI prototype
@@ -122,28 +126,34 @@ def reminder(interval: int):
             time.sleep(1)
             count +=1
         print("Reminder")
-        print(threading.active_count())
+        #print(threading.active_count())
+
+def saveData(object: Component,object_name: str):
+    folder_path = '../saved_data/'
+    with open(folder_path+object_name+'.pkl','wb') as file:
+        pickle.dump(object,file)
 
 def main():
 
-    #routine = createRoutine()
-    routine = Routine("Sleep Routine","Routine before going to sleep",[Tasks["Brush and Floss"],Tasks["Shower"],Tasks["Sleep"]])
+    routine = createRoutine()
+    saveData(routine,'routine')
+    #routine = Routine("Sleep Routine","Routine before going to sleep",[Tasks["Brush and Floss"],Tasks["Shower"],Tasks["Sleep"]])
 
     # Follow Routine
-    print("FOLLOW")
-    print("Starting {}".format(routine.name))
-    print(routine.description)
-    for task in routine.tasks:
-        print("Task: {}".format(task.name))
-        for step in task.steps:
-            print(step.name)
-            timer_thread = threading.Thread(target = reminder, args = (30,)) # timer thread with 30 second interval
-            global User_Status
-            User_Status = "GO"
-            timer_thread.start() # Start thread timer
-            step.waypoint.scan() # Program cannot continue until scan comes back
-            User_Status = "STOP"
-            timer_thread.join() # Join thread to wait for it to check for the stop status
+    #print("FOLLOW")
+    #print("Starting {}".format(routine.name))
+    #print(routine.description)
+    #for task in routine.tasks:
+    #    print("Task: {}".format(task.name))
+    #    for step in task.steps:
+    #        print(step.name)
+    #        timer_thread = threading.Thread(target = reminder, args = (30,)) # timer thread with 30 second interval
+    #        global User_Status
+    #        User_Status = "GO"
+    #        timer_thread.start() # Start thread timer
+    #        step.waypoint.scan() # Program cannot continue until scan comes back
+    #        User_Status = "STOP"
+    #        timer_thread.join() # Join thread to wait for it to check for the stop status
             
             
 if __name__ == "__main__":
