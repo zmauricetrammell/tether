@@ -30,6 +30,12 @@ class Task(Component):
 
     def toString(self):
         return("Name: {} | Description: {} | Steps: ({})".format(self.name,self.description, [step.toString() for step in self.steps]))
+    
+    def do(self):
+        print(self.toString())
+        print()
+        for step in self.steps:
+            step.do()
 
 def main():
     waypoint_a = Waypoint("test Waypoint","test Waypoint description","test location")

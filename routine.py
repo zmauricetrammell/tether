@@ -20,6 +20,12 @@ class Routine(Component):
 
     def toString(self):
         return("Name: {} | Desciption: {} | Tasks: ({})".format(self.name,self.description, [task.toString() for task in self.tasks]))
+    
+    def do(self):
+        print(self.toString())
+        print()
+        for task in self.tasks:
+            task.do()
         
 def main():
     kitchen_waypoint = Waypoint("Kitchen","Waypoint in kitchen","Kitchen Sink")

@@ -14,6 +14,9 @@ class Component:
 
     def toString(self):
         print("{}: {}".format(self.name,self.description))
+
+    def do(self):
+        pass
    
 def main(): 
     testComponent = Component("test","test component description")
