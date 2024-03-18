@@ -1,4 +1,5 @@
 from component import Component
+from random import randint
 
 Waypoints = {}
 
@@ -13,19 +14,23 @@ and conclude actions.
 """
 
 class Waypoint(Component): 
-    def __init__(self, name, description, location, code = '00000'):
+    def __init__(self, name, description, location):
         super().__init__(name, description)
         self.location = location
-        self.code = code
+        self.code = ''.join(["{}".format(randint(0, 9)) for num in range(0, 10)])
+
 
     def toString(self):
         return("Name: {} | Description: {} | Location: {} | Code: {}".format(self.name,self.description, self.location, self.code))
+    
+    def do(self):
+        print(self.toString()) 
+        print()
+        self.scan()
 
     def scan(self): # waits for RFID to be scanned
         match = False
-
         while not match: # TODO Move this to main.py
-            print("Scanning...") 
             input_string = input("Waypoint Code: ") # TODO build in RFID scanner
 
             if(input_string == self.code): # compare code received to code cached for Waypoint

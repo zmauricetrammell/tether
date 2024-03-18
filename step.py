@@ -26,6 +26,11 @@ class Step(Component):
 
     def toString(self):
         return("Name: {} | Description: {} | Waypoint: ({})".format(self.name,self.description,self.waypoint.toString()))
+    
+    def do(self):
+        print(self.toString())
+        print()
+        self.waypoint.scan()
  
 def main(): 
     #testStep = createStep()
