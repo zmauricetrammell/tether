@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.mykotlinapp.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_waypointFragment"
+            app:destination="@id/waypointFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_stepFragment"
+            app:destination="@id/stepFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_routineFragment"
+            app:destination="@id/routineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/waypointFragment"
+        android:name="com.example.mykotlinapp.WaypointFragment"
+        android:label="fragment_waypoint"
+        tools:layout="@layout/fragment_waypoint" >
+        <action
+            android:id="@+id/action_waypointFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_waypointFragment_to_followFragment"
+            app:destination="@id/followFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stepFragment"
+        android:name="com.example.mykotlinapp.StepFragment"
+        android:label="fragment_step"
+        tools:layout="@layout/fragment_step" >
+        <action
+            android:id="@+id/action_stepFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_stepFragment_to_followFragment"
+            app:destination="@id/followFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.mykotlinapp.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" >
+        <action
+            android:id="@+id/action_taskFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_followFragment"
+            app:destination="@id/followFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routineFragment"
+        android:name="com.example.mykotlinapp.RoutineFragment"
+        android:label="fragment_routine"
+        tools:layout="@layout/fragment_routine" >
+        <action
+            android:id="@+id/action_routineFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_routineFragment_to_followFragment"
+            app:destination="@id/followFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/followFragment"
+        android:name="com.example.mykotlinapp.FollowFragment"
+        android:label="fragment_follow"
+        tools:layout="@layout/fragment_follow" />
+</navigation>

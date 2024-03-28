@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MyKotlinApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="waypoints">Waypoints</string>
+    <string name="steps">Steps</string>
+    <string name="tasks">Tasks</string>
+    <string name="routines">Routines</string>
+    <string name="main">Main Menu</string>
+
+</resources>
